@@ -19,13 +19,9 @@ class AnimalitosApplicationTests {
 	AnimalitosRepository animalitosRepository = new AnimalitosRepositoryMongoDB();
 	AnimalitosUseCases animalitosUseCases = new AnimalitosUseCases(animalitosRepository);
 
-	@Test
-	void contextLoads() {
-	}
-
 	@BeforeAll()
 	public static void clean(){
-		//MongoDBConnection.getDatabase().getCollection("animalitos").drop();
+		MongoDBConnection.getDatabase().getCollection("animalitos").drop();
 	}
 
 	@Test
@@ -37,8 +33,9 @@ class AnimalitosApplicationTests {
 
 	@Test
 	public void list(){
+
 		List<Animalito> animalitos = animalitosUseCases.getAll();
-		assertEquals(3, animalitos.size());
+		assertEquals(0, animalitos.size());
 	}
 
 }

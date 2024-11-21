@@ -4,10 +4,15 @@ import com.cpifppiramide.animalitos.animalito.domain.Animalito;
 import com.cpifppiramide.animalitos.animalito.domain.AnimalitosRepository;
 import com.cpifppiramide.animalitos.context.MongoDBConnection;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.result.InsertOneResult;
+import org.bson.BsonObjectId;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class AnimalitosRepositoryMongoDB implements AnimalitosRepository {
     @Override
@@ -15,9 +20,10 @@ public class AnimalitosRepositoryMongoDB implements AnimalitosRepository {
         Document document = new Document();
         document.append("nombre", animalito.getNombre());
         MongoCollection<Document> collection = MongoDBConnection.getDatabase().getCollection("animalitos");
-        collection.insertOne(document);
+        InsertOneResult result = collection.insertOne(document);
+        String id = ((BsonObjectId) result.getInsertedId()).getValue().toHexString();
 
-        return animalito;
+        return new Animalito( collection.find(eq("_id", new ObjectId(id))).first().getString("nombre"));
     }
 
     @Override
