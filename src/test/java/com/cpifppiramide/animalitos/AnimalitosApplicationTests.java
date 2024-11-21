@@ -30,15 +30,15 @@ class AnimalitosApplicationTests {
 
 	@Test
 	public void save(){
-		Animalito animalito = new Animalito("pepe");
+		Animalito animalito = new Animalito("Pez");
 		Animalito devolver = animalitosUseCases.save(animalito);
-		assertEquals(devolver.getNombre(), animalito.getNombre());
+		assertEquals(animalito.getNombre(),devolver.getNombre());
 	}
 
 	@Test
 	public void list(){
 		List<Animalito> animalitos = animalitosUseCases.getAll();
-		assertEquals(1, animalitos.size());
+		assertEquals(3, animalitos.size());
 	}
 
 }

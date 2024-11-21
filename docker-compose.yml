@@ -1,0 +1,15 @@
+services:
+  mongodb:
+    image: mongo:6.0  # Usa la versión de MongoDB que necesites
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"  # Expone el puerto 27017 para conectarse desde tu máquina host
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin  # Usuario administrador
+      MONGO_INITDB_ROOT_PASSWORD: admin123  # Contraseña del usuario administrador
+    volumes:
+      - mongodb_data:/data/db  # Volumen persistente para los datos
+volumes:
+  mongodb_data:
+    driver: local
