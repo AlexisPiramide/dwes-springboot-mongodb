@@ -33,7 +33,7 @@ public class EntrenadorRepositoryMongoDB implements EntrenadorRepository {
         List<Integer> animalitosInteger = (ArrayList<Integer>)document.get("animalitos");
         List<Animalito> animalitos = new ArrayList<>();
         for(Integer i : animalitosInteger){
-            animalitos.add(new Animalito(i, null));
+            animalitos.add(new Animalito(id, null));
         }
         return new Entrenador(document.getObjectId("_id").toHexString(), document.getString("nombre"), animalitos);
     }

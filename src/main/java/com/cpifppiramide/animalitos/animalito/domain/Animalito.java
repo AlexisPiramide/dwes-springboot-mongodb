@@ -2,19 +2,19 @@ package com.cpifppiramide.animalitos.animalito.domain;
 
 public class Animalito {
 
-    private final Integer id;
-    private final String nombre;
+    private final String id,nombre, tipo;
 
-    public Animalito(Integer id, String nombre) {
+    public Animalito(String id, String nombre, String tipo) {
         this.id = id;
         this.nombre = nombre;
+        this.tipo = tipo;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
